@@ -1,15 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://svw5fydnkily"]
+[gd_scene load_steps=5 format=3 uid="uid://svw5fydnkily"]
 
 [ext_resource type="PackedScene" uid="uid://xhs8qoymdufd" path="res://Unit.tscn" id="1_mjs3k"]
 [ext_resource type="Texture2D" uid="uid://cecq07ii0unnq" path="res://Sprites/tile_0060.png" id="2_larix"]
 [ext_resource type="Script" path="res://PlayerUnit.gd" id="2_ynt2q"]
 
-[node name="PlayerUnit" node_paths=PackedStringArray("selection_visual") instance=ExtResource("1_mjs3k")]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_duvvn"]
+load_path = "res://.godot/imported/tile_0060.png-b37de159527c735a4efab71ec24ff1f3.ctex"
+
+[node name="PlayerUnit" node_paths=PackedStringArray("selection_visual", "target_visual") instance=ExtResource("1_mjs3k")]
 script = ExtResource("2_ynt2q")
 selection_visual = NodePath("SelectionVisual")
+target_visual = NodePath("SelectionVisualTarget")
 
 [node name="SelectionVisual" type="Sprite2D" parent="." index="0"]
 visible = false
 self_modulate = Color(0, 1, 0, 1)
 scale = Vector2(1.5, 0.782)
 texture = ExtResource("2_larix")
+
+[node name="SelectionVisualTarget" type="Sprite2D" parent="." index="1"]
+visible = false
+self_modulate = Color(1, 0, 0, 1)
+scale = Vector2(1.5, 0.782)
+texture = SubResource("CompressedTexture2D_duvvn")
