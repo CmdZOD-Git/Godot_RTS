@@ -3,6 +3,7 @@ extends CharacterBody2D
 class_name Unit
 
 @export var health:int = 100
+@export var health_max:int = 100
 @export var damage:int = 20
 
 @export var move_speed:float = 50
@@ -16,16 +17,21 @@ var target:CharacterBody2D
 @export var agent: NavigationAgent2D
 @export var sprite: Sprite2D
 @export var collision: CollisionShape2D
+@export var hp_bar: ProgressBar
 
 @onready var game_manager: Node = get_node("/root/Main")
 
 @export var team:int = 1
 
 func _ready() -> void:
+	add_to_group("Unit")
+	
 	if is_player():
 		game_manager.player_units.append(self)
 	else:
 		game_manager.enemy_units.append(self)
+		
+	update_hp_bar()
 
 func _physics_process(delta: float) -> void:
 	if agent.is_navigation_finished():
@@ -73,10 +79,15 @@ func _try_attack_target(target):
 
 func take_damage (damage_to_take) -> void:
 	health -= damage_to_take
-	
+	update_hp_bar()
+
 	if health <= 0:
 		queue_free()
 		
 	sprite.modulate = Color.RED
 	await get_tree().create_timer(0.1).timeout
 	sprite.modulate = Color.WHITE
+
+func update_hp_bar() -> void:
+	var ratio:float = 100 * health / health_max
+	hp_bar.set_value(ratio)

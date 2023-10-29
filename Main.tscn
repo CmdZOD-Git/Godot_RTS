@@ -1,14 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://6eu4o6xjpty4"]
+[gd_scene load_steps=10 format=3 uid="uid://6eu4o6xjpty4"]
 
 [ext_resource type="Script" path="res://GameManager.gd" id="1_2lr5w"]
 [ext_resource type="TileSet" uid="uid://y2qu4p8eeq64" path="res://Sprites/TileMap.tres" id="2_bsrsb"]
 [ext_resource type="PackedScene" uid="uid://svw5fydnkily" path="res://PlayerUnit.tscn" id="2_ng5nf"]
 [ext_resource type="PackedScene" uid="uid://dwbcvkqa6vw8h" path="res://EnemyUnit.tscn" id="3_fgk1o"]
+[ext_resource type="Script" path="res://SelectionGUI.gd" id="5_7lm8c"]
+[ext_resource type="Script" path="res://VBoxContainer.gd" id="6_jbgx7"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ooby6"]
 vertices = PackedVector2Array(112, -176, 128, -176, 128, -128, 112, -128)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(112, -128, 128, -128, 128, -176, 112, -176)])
+
+[sub_resource type="Gradient" id="Gradient_h47f3"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.423529, 0.309804, 0.12549, 0.788235)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_w0lfj"]
+gradient = SubResource("Gradient_h47f3")
+width = 1
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_2lr5w")
@@ -22,25 +32,74 @@ layer_0/tile_data = PackedInt32Array(-1, 0, 4, 65534, 393216, 3, 65533, 0, 4, 13
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="TileMap"]
 navigation_polygon = SubResource("NavigationPolygon_ooby6")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-21, -13)
-scale = Vector2(0.0052049, 4.46036)
-zoom = Vector2(2, 2)
-
 [node name="PlayerUnit" parent="." instance=ExtResource("2_ng5nf")]
-position = Vector2(-40, -84)
+position = Vector2(-33, -82)
 health = 200
+health_max = 200
 damage = 30
 attack_rate = 0.2
 
 [node name="EnemyUnit" parent="." instance=ExtResource("3_fgk1o")]
-position = Vector2(31, 48)
+position = Vector2(38, 50)
 
 [node name="EnemyUnit2" parent="." instance=ExtResource("3_fgk1o")]
-position = Vector2(112, 102)
+position = Vector2(119, 104)
 
 [node name="EnemyUnit3" parent="." instance=ExtResource("3_fgk1o")]
-position = Vector2(146, 74)
+position = Vector2(153, 76)
 
 [node name="EnemyUnit4" parent="." instance=ExtResource("3_fgk1o")]
-position = Vector2(-198, 23)
+position = Vector2(-191, 25)
+
+[node name="SelectionGUI" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_right = 1.0
+offset_bottom = 1.0
+texture = SubResource("GradientTexture1D_w0lfj")
+stretch_mode = 1
+script = ExtResource("5_7lm8c")
+metadata/_edit_use_anchors_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+z_index = 999
+position = Vector2(-2, -25)
+scale = Vector2(0.0052049, 4.46036)
+zoom = Vector2(2, 2)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." node_paths=PackedStringArray("text0", "text1", "text2", "text3", "text4", "text5")]
+visible = false
+offset_left = -211.0
+offset_top = -237.0
+offset_right = -123.0
+offset_bottom = -108.0
+script = ExtResource("6_jbgx7")
+text0 = NodePath("Label0")
+text1 = NodePath("Label1")
+text2 = NodePath("Label2")
+text3 = NodePath("Label3")
+text4 = NodePath("Label4")
+text5 = NodePath("Label5")
+
+[node name="Label0" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "test"
+
+[node name="Label1" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "test"
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "test"
+
+[node name="Label3" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "test"
+
+[node name="Label4" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "test"
+
+[node name="Label5" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "test"

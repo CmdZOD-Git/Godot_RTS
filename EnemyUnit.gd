@@ -4,6 +4,10 @@ extends Unit
 
 @export var detect_range: float = 100
 
+func _ready() -> void:
+	super._ready()
+	add_to_group(str(team))
+
 func _process(delta: float) -> void:
 	_target_check()
 	

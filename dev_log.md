@@ -31,7 +31,7 @@ var current_time = Time.get_unix_time_from_system()
 
 4. Use modulate and await + in-line timer
 
-```
+``` GDScript
 sprite.modulate = Color.RED
 await get_tree().create_timer(0.1).timeout
 sprite.modulate = Color.WHITE
@@ -39,14 +39,30 @@ sprite.modulate = Color.WHITE
 
 5. Make a selection visual with a simple selection sprite
 
+6. Basic event listener for mouse press
+
+``` GDSCript
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			_try_select_unit()
+		elif event.button_index == MOUSE_BUTTON_RIGHT:
+			_try_command_unit()
+```
+
 # What i want to do next
 
-## SPRINT 1
-1. DONE Expend selection with a a target indicator
-2. Healtbar
-3. area selection with mouse as a first step to multiple unit game
-
-# If i were to start from 0
+## If i were to start from 0
 + Put game_manager in a generic 2D node above the tilemap
 + Make a more robust generic Unit class
-+ Be really carefull with overiding _ready and process... or use super
+	 - Be really carefull with overiding _ready and process... or use super
+
+## SPRINT 1
+1. DONE Switch from navigation region to tileset based navigation (PS : you can use both together !)
+	- Only needed to add navigation to the Tileset ressource
+2. DONE Expend selection with a a target indicator
+	- Added logic to Player Unit
+3. DONE Healtbar
+4. 50% area selection with mouse as a first step to multiple unit game
+	- DONE Getting the selection area to work
+	- Implement logic to select multiple unit

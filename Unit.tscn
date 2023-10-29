@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://xhs8qoymdufd"]
+[gd_scene load_steps=6 format=3 uid="uid://xhs8qoymdufd"]
 
 [ext_resource type="Script" path="res://Unit.gd" id="1_asddm"]
 [ext_resource type="Texture2D" uid="uid://c5lwvtthd37rx" path="res://Sprites/tile_0088.png" id="1_gtvf0"]
@@ -6,11 +6,24 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7dqo8"]
 size = Vector2(16, 16)
 
-[node name="Unit" type="CharacterBody2D" node_paths=PackedStringArray("agent", "sprite", "collision")]
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_0iaxp"]
+color = Color(0, 0, 0, 0.733333)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 2
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_q2gk7"]
+color = Color(1, 0, 0, 1)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 2
+
+[node name="Unit" type="CharacterBody2D" node_paths=PackedStringArray("agent", "sprite", "collision", "hp_bar")]
 script = ExtResource("1_asddm")
 agent = NodePath("NavigationLink2D")
 sprite = NodePath("Sprite2D")
 collision = NodePath("CollisionShape2D")
+hp_bar = NodePath("ProgressBar")
 
 [node name="NavigationLink2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 5.0
@@ -25,3 +38,16 @@ shape = SubResource("RectangleShape2D_7dqo8")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -7)
 texture = ExtResource("1_gtvf0")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+self_modulate = Color(1, 0, 0, 1)
+custom_minimum_size = Vector2(0, 2)
+offset_left = -8.0
+offset_top = -18.0
+offset_right = 8.0
+offset_bottom = -16.0
+theme_override_styles/background = SubResource("StyleBoxLine_0iaxp")
+theme_override_styles/fill = SubResource("StyleBoxLine_q2gk7")
+step = 1.0
+value = 20.0
+show_percentage = false

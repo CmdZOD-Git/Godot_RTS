@@ -10,7 +10,7 @@ func _input(event: InputEvent) -> void:
 			_try_select_unit()
 		elif event.button_index == MOUSE_BUTTON_RIGHT:
 			_try_command_unit()
-
+			
 func _get_selected_unit():
 	var space = get_world_2d().direct_space_state
 	var query = PhysicsPointQueryParameters2D.new()
