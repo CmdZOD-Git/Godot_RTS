@@ -16,10 +16,10 @@ func _get_selected_unit():
 ```
 
 2. Setting up a navigation agent
-    + Just add a navigation node
-    + Setup navigation region
-    + get direction from NavigationLink2D.get_next_path_position()
-    + move and slide !
+	+ Just add a navigation node
+	+ Setup navigation region
+	+ get direction from NavigationLink2D.get_next_path_position()
+	+ move and slide !
 
 3. Get global time
 
@@ -63,6 +63,7 @@ func _input(event: InputEvent) -> void:
 2. DONE Expend selection with a a target indicator
 	- Added logic to Player Unit
 3. DONE Healtbar
-4. 50% area selection with mouse as a first step to multiple unit game
+4. DONE area selection with mouse as a first step to multiple unit game
 	- DONE Getting the selection area to work
-	- Implement logic to select multiple unit
+	- DONE Getting selection area to work in all direction
+	- DONE (ugly but done) Implement logic to select multiple unit
