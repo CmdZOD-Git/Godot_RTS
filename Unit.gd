@@ -20,6 +20,7 @@ var target:CharacterBody2D
 @export var collision: CollisionShape2D
 @export var hp_bar: ProgressBar
 @export var particle_health: GPUParticles2D
+@export var attack_animation_effect:PackedScene
 
 @onready var game_manager: Node = get_node("/root/Main")
 
@@ -85,7 +86,8 @@ func _try_attack_target(target):
 	if current_time - last_attack_time < attack_rate:
 		return
 
-	target.take_damage(damage)
+	target.add_child(attack_animation_effect.instantiate())
+	target.take_damage(damage)	
 	last_attack_time = current_time
 
 func take_damage (damage_to_take) -> void:

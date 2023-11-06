@@ -72,9 +72,9 @@ func _input(event: InputEvent) -> void:
 1. DONE Main Event Bus
 2. DONE Camera Move and Zoom in/out
 3. DONE Health regen & associated particles
-4. Hit impact
+4. DONE Hit impact
 5. Basic UI for selected unit & action box
-6. Transform UNit
+6. Transform Unit
 7. Ranged unit
 8. Ranged area attack
 9. Auto attack
