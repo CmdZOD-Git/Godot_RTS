@@ -60,5 +60,3 @@ show_percentage = false
 [node name="HealthParticle" parent="." instance=ExtResource("3_77eth")]
 emitting = false
 amount = 3
-
-[node name="Sprite2D2" parent="." instance=ExtResource("4_4svg7")]

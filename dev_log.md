@@ -73,16 +73,16 @@ func _input(event: InputEvent) -> void:
 2. DONE Camera Move and Zoom in/out
 3. DONE Health regen & associated particles
 4. DONE Hit impact
-5. Basic UI for selected unit & action box
-6. Transform Unit
+5. DONE Basic UI for selected unit
+6. Transform Unit & Action box to transform
 7. Ranged unit
 8. Ranged area attack
-9. Auto attack
+9. Auto attack in range
 
 ## SPRINT 3
-1. Attack Move
+1. Attack Move Command
 2. XP System
-3. Barracks
-4. UI for Ressources & Time
+3. UI for Ressources & Time
+4. Barracks
 5. Mission logic
 6. Mission select screen

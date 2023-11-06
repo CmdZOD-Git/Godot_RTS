@@ -4,6 +4,8 @@ var selected_unit: Array[PlayerUnit]
 var player_units: Array[CharacterBody2D]
 var enemy_units: Array[CharacterBody2D]
 
+signal update_unit_selection(selected_unit)
+
 func _ready() -> void:
 	get_node("%SelectionGUI").unit_selected.connect(_unit_selected)
 
@@ -30,12 +32,14 @@ func _try_select_unit():
 	
 	if not unit == null and unit.is_player():
 		_select_unit(unit)
+		emit_signal("update_unit_selection", selected_unit)
 	else:
 		_unselect_unit()
 	
 func _select_unit(unit):
 	_unselect_unit()
 	selected_unit.append(unit)
+	emit_signal("update_unit_selection", selected_unit)
 	for item in selected_unit:
 		item.toggle_selection_visual(true)
 
@@ -45,6 +49,7 @@ func _unselect_unit():
 			item.toggle_selection_visual(false)
 	
 	selected_unit.clear()
+	emit_signal("update_unit_selection", selected_unit)
 		
 func _try_command_unit():
 	if selected_unit == null or selected_unit == []:
@@ -61,5 +66,6 @@ func _try_command_unit():
 
 func _unit_selected(unit_list:Array[Unit]):
 	selected_unit.append_array(unit_list)
+	emit_signal("update_unit_selection", selected_unit)
 	for item in unit_list:
 		item.toggle_selection_visual(true)

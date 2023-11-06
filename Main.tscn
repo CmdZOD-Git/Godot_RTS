@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://6eu4o6xjpty4"]
+[gd_scene load_steps=13 format=3 uid="uid://6eu4o6xjpty4"]
 
 [ext_resource type="Script" path="res://GameManager.gd" id="1_2lr5w"]
 [ext_resource type="TileSet" uid="uid://y2qu4p8eeq64" path="res://Sprites/TileMap.tres" id="2_bsrsb"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://SelectionGUI.gd" id="5_7lm8c"]
 [ext_resource type="Script" path="res://CameraMain.gd" id="6_17dmj"]
 [ext_resource type="Script" path="res://VBoxContainer.gd" id="6_jbgx7"]
+[ext_resource type="Script" path="res://GridContainer.gd" id="8_jfaij"]
+[ext_resource type="Texture2D" uid="uid://n32ljoyueqls" path="res://Sprites/tile_0087.png" id="9_fi665"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ooby6"]
 vertices = PackedVector2Array(112, -176, 128, -176, 128, -128, 112, -128)
@@ -106,3 +108,42 @@ text = "test"
 [node name="Label5" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "test"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer"]
+self_modulate = Color(0.486275, 0.105882, 0, 0.87451)
+layout_direction = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = 7.0
+offset_right = -470.0
+offset_bottom = -819.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 12
+script = ExtResource("8_jfaij")
+
+[node name="Sprite2D" type="TextureRect" parent="CanvasLayer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("9_fi665")
+
+[node name="Sprite2D2" type="TextureRect" parent="CanvasLayer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("9_fi665")
+
+[node name="Sprite2D3" type="TextureRect" parent="CanvasLayer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("9_fi665")
+
+[node name="Sprite2D4" type="TextureRect" parent="CanvasLayer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("9_fi665")
+
+[node name="Sprite2D5" type="TextureRect" parent="CanvasLayer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("9_fi665")
