@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://xhs8qoymdufd"]
+[gd_scene load_steps=7 format=3 uid="uid://xhs8qoymdufd"]
 
 [ext_resource type="Script" path="res://Unit.gd" id="1_asddm"]
 [ext_resource type="Texture2D" uid="uid://c5lwvtthd37rx" path="res://Sprites/tile_0088.png" id="1_gtvf0"]
+[ext_resource type="PackedScene" uid="uid://wpfcbf1hg6bq" path="res://health_particle.tscn" id="3_77eth"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7dqo8"]
 size = Vector2(16, 6)
@@ -18,12 +19,13 @@ grow_begin = 0.0
 grow_end = 0.0
 thickness = 2
 
-[node name="Unit" type="CharacterBody2D" node_paths=PackedStringArray("agent", "sprite", "collision", "hp_bar")]
+[node name="Unit" type="CharacterBody2D" node_paths=PackedStringArray("agent", "sprite", "collision", "hp_bar", "particle_health")]
 script = ExtResource("1_asddm")
 agent = NodePath("NavigationLink2D")
 sprite = NodePath("Sprite2D")
 collision = NodePath("CollisionShape2D")
 hp_bar = NodePath("ProgressBar")
+particle_health = NodePath("HealthParticle")
 
 [node name="NavigationLink2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 1.0
@@ -52,3 +54,7 @@ theme_override_styles/fill = SubResource("StyleBoxLine_q2gk7")
 step = 1.0
 value = 20.0
 show_percentage = false
+
+[node name="HealthParticle" parent="." instance=ExtResource("3_77eth")]
+emitting = false
+amount = 3

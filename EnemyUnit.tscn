@@ -9,6 +9,7 @@
 script = ExtResource("2_wa8tq")
 selection_visual = NodePath("SelectionVisual")
 detect_range = 100.0
+health_regen = 0.0
 team = 2
 
 [node name="SelectionVisual" type="Sprite2D" parent="." index="0"]

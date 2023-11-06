@@ -2,8 +2,9 @@ extends CharacterBody2D
 
 class_name Unit
 
-@export var health:int = 100
-@export var health_max:int = 100
+@export var health:float = 100.0
+@export var health_max:float = 100.0
+@export var health_regen:float = 1.0
 @export var damage:int = 20
 
 @export var move_speed:float = 50
@@ -35,8 +36,17 @@ func _ready() -> void:
 	update_hp_bar()
 
 func _physics_process(delta: float) -> void:
+	if health < health_max:
+		health += health_regen * delta
+		health = clampf(health, 0, health_max)
+		particle_health.emitting = true
+		update_hp_bar()
+	else:
+		particle_health.emitting = false
+	
 	if agent.is_navigation_finished():
 		return
+	
 	var direction = global_position.direction_to(agent.get_next_path_position())
 	velocity = direction * move_speed
 	move_and_slide()

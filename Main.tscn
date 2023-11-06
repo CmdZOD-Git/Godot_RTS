@@ -36,6 +36,7 @@ navigation_polygon = SubResource("NavigationPolygon_ooby6")
 position = Vector2(-33, -82)
 health = 200
 health_max = 200
+health_regen = 10.0
 damage = 30
 attack_rate = 0.2
 

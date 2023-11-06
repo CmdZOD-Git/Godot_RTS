@@ -71,7 +71,7 @@ func _input(event: InputEvent) -> void:
 ## SPRINT 2
 1. DONE Main Event Bus
 2. DONE Camera Move and Zoom in/out
-3. Health regen & associated particles
+3. DONE Health regen & associated particles
 4. Hit impact
 5. Basic UI for selected unit & action box
 6. Transform UNit
