@@ -57,7 +57,7 @@ func _input(event: InputEvent) -> void:
 + Make a more robust generic Unit class
 	 - Be really carefull with overiding _ready and process... or use super
 
-## SPRINT 1
+## SPRINT 1 - DONE
 1. DONE Switch from navigation region to tileset based navigation (PS : you can use both together !)
 	- Only needed to add navigation to the Tileset ressource
 2. DONE Expend selection with a a target indicator
@@ -65,5 +65,24 @@ func _input(event: InputEvent) -> void:
 3. DONE Healtbar
 4. DONE area selection with mouse as a first step to multiple unit game
 	- DONE Getting the selection area to work
-	- DONE Getting selection area to work in all direction
-	- DONE (ugly but done) Implement logic to select multiple unit
+	- DONE Getting selection area to work in all direction -> easier than i thought
+	- DONE (ugly but done) Implement logic to select multiple units
+
+## SPRINT 2
+1. DONE Main Event Bus
+2. DONE Camera Move and Zoom in/out
+3. Health regen & associated particles
+4. Hit impact
+5. Basic UI for selected unit & action box
+6. Transform UNit
+7. Ranged unit
+8. Ranged area attack
+9. Auto attack
+
+## SPRINT 3
+1. Attack Move
+2. XP System
+3. Barracks
+4. UI for Ressources & Time
+5. Mission logic
+6. Mission select screen

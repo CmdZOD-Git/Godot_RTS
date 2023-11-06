@@ -18,6 +18,7 @@ var target:CharacterBody2D
 @export var sprite: Sprite2D
 @export var collision: CollisionShape2D
 @export var hp_bar: ProgressBar
+@export var particle_health: GPUParticles2D
 
 @onready var game_manager: Node = get_node("/root/Main")
 

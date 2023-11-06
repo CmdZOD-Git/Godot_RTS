@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c5lwvtthd37rx" path="res://Sprites/tile_0088.png" id="1_gtvf0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7dqo8"]
-size = Vector2(16, 16)
+size = Vector2(16, 6)
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_0iaxp"]
 color = Color(0, 0, 0, 0.733333)
@@ -26,13 +26,14 @@ collision = NodePath("CollisionShape2D")
 hp_bar = NodePath("ProgressBar")
 
 [node name="NavigationLink2D" type="NavigationAgent2D" parent="."]
-path_desired_distance = 5.0
-target_desired_distance = 5.0
+path_desired_distance = 1.0
+target_desired_distance = 3.0
+path_postprocessing = 1
 debug_enabled = true
 debug_path_custom_color = Color(1, 0, 0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -7)
+position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_7dqo8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
