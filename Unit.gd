@@ -11,6 +11,8 @@ class_name Unit
 @export var attack_range:float = 20
 @export var attack_rate:float = 0.5
 
+@export var action_list:Array[Action]
+
 var last_attack_time:float
 
 var target:CharacterBody2D

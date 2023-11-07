@@ -25,9 +25,7 @@ func _physics_process(delta: float) -> void:
 	if check_collision:
 		collision_shape.set_deferred("disabled", false)
 		detected_bodies = collision_area.get_overlapping_bodies()
-		print_debug(detected_bodies)
 		var detected_areas = collision_area.get_overlapping_areas()
-		print_debug(detected_areas)
 		check_collision = false
 		collision_shape.global_position = Vector2.ZERO
 		collision_rectangle.size = Vector2.ZERO

@@ -74,10 +74,11 @@ func _input(event: InputEvent) -> void:
 3. DONE Health regen & associated particles
 4. DONE Hit impact
 5. DONE Basic UI for selected unit
-6. Transform Unit & Action box to transform
-	+ Create a second type of player Unit
+6. 33% Transform Unit & Action box to transform
+	+ DONE Create a second type of player Unit
 	+ Create a UI to switch one selected unit to the new type
 	+ Add a bouton to switch a selected new type to old type
+	=> I'm still trying to find the proper way to do it...
 7. Ranged unit
 8. Ranged area attack
 9. Auto attack in range
