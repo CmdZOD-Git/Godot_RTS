@@ -109,9 +109,9 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 7.0
-offset_top = 7.0
-offset_right = -470.0
-offset_bottom = -819.0
+offset_top = 6.0
+offset_right = -466.0
+offset_bottom = -796.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -119,8 +119,28 @@ size_flags_vertical = 3
 columns = 12
 script = ExtResource("8_jfaij")
 
+[node name="GridContainer2" type="GridContainer" parent="CanvasLayer"]
+self_modulate = Color(0.486275, 0.105882, 0, 0.87451)
+layout_direction = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 23.0
+offset_top = 12.0
+offset_right = -470.0
+offset_bottom = -784.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 8
+
 [node name="PlayerUnit" parent="." instance=ExtResource("2_ng5nf")]
 position = Vector2(-71, -82)
 
 [node name="PlayerUnit2" parent="." instance=ExtResource("2_ng5nf")]
 position = Vector2(81, -67)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0

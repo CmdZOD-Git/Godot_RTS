@@ -72,6 +72,10 @@ func _unit_selected(unit_list:Array[Unit]):
 		item.toggle_selection_visual(true)
 
 func _unit_dead(unit_reference:Unit):
+	if selected_unit == []:
+		emit_signal("update_unit_selection", selected_unit)
+		return
+	
 	if selected_unit.has(unit_reference):
 		selected_unit.erase(unit_reference)
 		emit_signal("update_unit_selection", selected_unit)
