@@ -28,7 +28,7 @@ var target:CharacterBody2D
 
 func _ready() -> void:
 	add_to_group("Unit")
-	
+
 	if is_player():
 		game_manager.player_units.append(self)
 	else:
@@ -95,6 +95,7 @@ func take_damage (damage_to_take) -> void:
 	update_hp_bar()
 
 	if health <= 0:
+		EventBus.emit_signal("unit_dead", self)
 		queue_free()
 		
 	sprite.modulate = Color.RED

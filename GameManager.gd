@@ -1,13 +1,14 @@
 extends Node2D
 
 var selected_unit: Array[PlayerUnit]
-var player_units: Array[CharacterBody2D]
-var enemy_units: Array[CharacterBody2D]
+var player_units: Array[Unit]
+var enemy_units: Array[Unit]
 
 signal update_unit_selection(selected_unit)
 
 func _ready() -> void:
 	get_node("%SelectionGUI").unit_selected.connect(_unit_selected)
+	EventBus.unit_dead.connect(_unit_dead)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
@@ -69,3 +70,8 @@ func _unit_selected(unit_list:Array[Unit]):
 	emit_signal("update_unit_selection", selected_unit)
 	for item in unit_list:
 		item.toggle_selection_visual(true)
+
+func _unit_dead(unit_reference:Unit):
+	if selected_unit.has(unit_reference):
+		selected_unit.erase(unit_reference)
+		emit_signal("update_unit_selection", selected_unit)

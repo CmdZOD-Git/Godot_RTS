@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://6eu4o6xjpty4"]
+[gd_scene load_steps=12 format=3 uid="uid://6eu4o6xjpty4"]
 
 [ext_resource type="Script" path="res://GameManager.gd" id="1_2lr5w"]
 [ext_resource type="TileSet" uid="uid://y2qu4p8eeq64" path="res://Sprites/TileMap.tres" id="2_bsrsb"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" path="res://CameraMain.gd" id="6_17dmj"]
 [ext_resource type="Script" path="res://VBoxContainer.gd" id="6_jbgx7"]
 [ext_resource type="Script" path="res://GridContainer.gd" id="8_jfaij"]
-[ext_resource type="Texture2D" uid="uid://n32ljoyueqls" path="res://Sprites/tile_0087.png" id="9_fi665"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ooby6"]
 vertices = PackedVector2Array(112, -176, 128, -176, 128, -128, 112, -128)
@@ -33,14 +32,6 @@ layer_0/tile_data = PackedInt32Array(-1, 0, 4, 65534, 393216, 3, 65533, 0, 4, 13
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="TileMap"]
 navigation_polygon = SubResource("NavigationPolygon_ooby6")
-
-[node name="PlayerUnit" parent="." instance=ExtResource("2_ng5nf")]
-position = Vector2(-33, -82)
-health = 200
-health_max = 200
-health_regen = 10.0
-damage = 30
-attack_rate = 0.2
 
 [node name="EnemyUnit" parent="." instance=ExtResource("3_fgk1o")]
 position = Vector2(38, 50)
@@ -128,22 +119,8 @@ size_flags_vertical = 3
 columns = 12
 script = ExtResource("8_jfaij")
 
-[node name="Sprite2D" type="TextureRect" parent="CanvasLayer/GridContainer"]
-layout_mode = 2
-texture = ExtResource("9_fi665")
+[node name="PlayerUnit" parent="." instance=ExtResource("2_ng5nf")]
+position = Vector2(-71, -82)
 
-[node name="Sprite2D2" type="TextureRect" parent="CanvasLayer/GridContainer"]
-layout_mode = 2
-texture = ExtResource("9_fi665")
-
-[node name="Sprite2D3" type="TextureRect" parent="CanvasLayer/GridContainer"]
-layout_mode = 2
-texture = ExtResource("9_fi665")
-
-[node name="Sprite2D4" type="TextureRect" parent="CanvasLayer/GridContainer"]
-layout_mode = 2
-texture = ExtResource("9_fi665")
-
-[node name="Sprite2D5" type="TextureRect" parent="CanvasLayer/GridContainer"]
-layout_mode = 2
-texture = ExtResource("9_fi665")
+[node name="PlayerUnit2" parent="." instance=ExtResource("2_ng5nf")]
+position = Vector2(81, -67)

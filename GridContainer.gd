@@ -9,8 +9,7 @@ func _ready() -> void:
 func _update_selection(unit_selection):
 	
 	for item in get_children():
-		item.queue_free()		
-	
+		item.queue_free()	
 	
 	for item in unit_selection:
 		print(item.sprite)
