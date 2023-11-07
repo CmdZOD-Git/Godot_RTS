@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://xhs8qoymdufd"]
+[gd_scene load_steps=9 format=3 uid="uid://xhs8qoymdufd"]
 
 [ext_resource type="Script" path="res://Unit.gd" id="1_asddm"]
 [ext_resource type="Texture2D" uid="uid://c5lwvtthd37rx" path="res://Sprites/tile_0088.png" id="1_gtvf0"]
 [ext_resource type="PackedScene" uid="uid://wpfcbf1hg6bq" path="res://health_particle.tscn" id="3_77eth"]
 [ext_resource type="PackedScene" uid="uid://b7gwlnmaykhds" path="res://AttackAnimation.tscn" id="4_4svg7"]
+[ext_resource type="PackedScene" uid="uid://cowb8ycq3ghj7" path="res://ActionManager.tscn" id="5_awhnm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7dqo8"]
 size = Vector2(16, 6)
@@ -20,8 +21,9 @@ grow_begin = 0.0
 grow_end = 0.0
 thickness = 2
 
-[node name="Unit" type="CharacterBody2D" node_paths=PackedStringArray("agent", "sprite", "collision", "hp_bar", "particle_health")]
+[node name="Unit" type="CharacterBody2D" node_paths=PackedStringArray("action_manager", "agent", "sprite", "collision", "hp_bar", "particle_health")]
 script = ExtResource("1_asddm")
+action_manager = NodePath("ActionManager")
 agent = NodePath("NavigationLink2D")
 sprite = NodePath("Sprite2D")
 collision = NodePath("CollisionShape2D")
@@ -60,3 +62,5 @@ show_percentage = false
 [node name="HealthParticle" parent="." instance=ExtResource("3_77eth")]
 emitting = false
 amount = 3
+
+[node name="ActionManager" parent="." instance=ExtResource("5_awhnm")]
