@@ -11,9 +11,6 @@ class_name Unit
 @export var attack_range:float = 20
 @export var attack_rate:float = 0.5
 
-@export var action_manager:Node
-@export var action_list:Array[Action]
-
 var last_attack_time:float
 
 var target:CharacterBody2D
@@ -26,6 +23,8 @@ var target:CharacterBody2D
 @export var attack_animation_effect:PackedScene
 
 @onready var game_manager: Node = get_node("/root/Main")
+
+@export var action_list: Array[ActionVerb]
 
 @export var team:int = 1
 
@@ -108,3 +107,14 @@ func take_damage (damage_to_take) -> void:
 func update_hp_bar() -> void:
 	var ratio:float = 100 * health / health_max
 	hp_bar.set_value(ratio)
+
+func action_transform_self(target_unit_path:String = "res://PlayerUnitHeavy.tscn"):
+	var target_item = load(target_unit_path).instantiate()
+	target_item.transform = transform
+	target_item.health = health
+	target_item.target = target
+	target_item.agent.target_position = agent.target_position
+	target_item.last_attack_time = last_attack_time
+	target_item.team = team
+	add_sibling(target_item)
+	self.queue_free()

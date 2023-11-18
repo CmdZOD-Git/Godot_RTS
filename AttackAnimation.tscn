@@ -54,9 +54,9 @@ _data = {
 }
 
 [node name="Sprite2D2" type="Sprite2D"]
-self_modulate = Color(1, 1, 1, 0.756863)
+self_modulate = Color(1, 0, 0, 0.756863)
 position = Vector2(0, -5)
-scale = Vector2(0.5, 0.5)
+scale = Vector2(2, 2)
 texture = SubResource("AtlasTexture_1yh87")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

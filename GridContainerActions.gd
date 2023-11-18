@@ -11,9 +11,19 @@ func _update_selection(unit_selection):
 		item.queue_free()	
 	
 	for item in unit_selection:
-		if item.action_list == []:
+		if item.action_list.size() == 0:
 			continue
 		
 		for action in item.action_list:
-			print(action.verb)
-		
+			var add_item:TextureButton = TextureButton.new()
+			
+			add_item.texture_normal = action.icon
+			add_item.size = Vector2(64,64)
+			add_item.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT
+			add_item.size_flags_horizontal = 3
+			add_item.size_flags_vertical = 3
+			
+			add_item.button_down.connect(item.action_transform_self)
+#			add_item.button_down.connect(Callable(item, "action_transform_self"))
+
+			add_child(add_item)
