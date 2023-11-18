@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://svw5fydnkily"]
+[gd_scene load_steps=6 format=3 uid="uid://svw5fydnkily"]
 
 [ext_resource type="PackedScene" uid="uid://xhs8qoymdufd" path="res://Unit.tscn" id="1_mjs3k"]
 [ext_resource type="Texture2D" uid="uid://cecq07ii0unnq" path="res://Sprites/tile_0060.png" id="2_larix"]
 [ext_resource type="Script" path="res://PlayerUnit.gd" id="2_ynt2q"]
+[ext_resource type="Resource" uid="uid://cqp41uqte1hgb" path="res://ActionVerb/TransformToHeavy.res" id="3_rsp8p"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_duvvn"]
 load_path = "res://.godot/imported/tile_0060.png-b37de159527c735a4efab71ec24ff1f3.ctex"
@@ -11,7 +12,7 @@ load_path = "res://.godot/imported/tile_0060.png-b37de159527c735a4efab71ec24ff1f
 script = ExtResource("2_ynt2q")
 selection_visual = NodePath("SelectionVisual")
 target_visual = NodePath("SelectionVisualTarget")
-action_list = Array[Resource("res://ActionVerb.gd")]([null])
+action_list = Array[Resource("res://ActionVerb.gd")]([ExtResource("3_rsp8p")])
 
 [node name="SelectionVisual" type="Sprite2D" parent="." index="0"]
 visible = false

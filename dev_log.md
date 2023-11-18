@@ -74,11 +74,12 @@ func _input(event: InputEvent) -> void:
 3. DONE Health regen & associated particles
 4. DONE Hit impact
 5. DONE Basic UI for selected unit
-6. 90% Transform Unit & Action box to transform
+6. DONE Transform Unit & Action box to transform
 	+ DONE Create a second type of player Unit
-	+ 75% DONE Create a UI to switch one selected unit to the new type
+	+ DONE Create a UI to switch one selected unit to the new type
 	+ DONE Add a bouton to switch a selected new type to old type
-6' DONE added Y-sort logic to Main
+6.b DONE added Y-sort logic to Main
+6.c DONE (but ugly AF) Fix unselect behaviour on action click in the UI
 7. Ranged unit
 8. Ranged area attack
 9. Auto attack in range

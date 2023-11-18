@@ -1,28 +1,19 @@
-[gd_scene load_steps=17 format=3 uid="uid://6eu4o6xjpty4"]
+[gd_scene load_steps=13 format=3 uid="uid://6eu4o6xjpty4"]
 
 [ext_resource type="Script" path="res://GameManager.gd" id="1_2lr5w"]
 [ext_resource type="TileSet" uid="uid://y2qu4p8eeq64" path="res://Sprites/TileMap.tres" id="2_bsrsb"]
 [ext_resource type="PackedScene" uid="uid://svw5fydnkily" path="res://PlayerUnit.tscn" id="2_ng5nf"]
 [ext_resource type="PackedScene" uid="uid://dwbcvkqa6vw8h" path="res://EnemyUnit.tscn" id="3_fgk1o"]
-[ext_resource type="Texture2D" uid="uid://b833s2hvkap1" path="res://Sprites/tile_0097.png" id="5_2d38s"]
 [ext_resource type="Script" path="res://SelectionGUI.gd" id="5_7lm8c"]
 [ext_resource type="Script" path="res://CameraMain.gd" id="6_17dmj"]
 [ext_resource type="Script" path="res://VBoxContainer.gd" id="6_jbgx7"]
-[ext_resource type="Script" path="res://ActionVerb.gd" id="6_t5kfd"]
 [ext_resource type="Script" path="res://GridContainerActions.gd" id="8_aieue"]
 [ext_resource type="Script" path="res://GridContainer.gd" id="8_jfaij"]
-[ext_resource type="PackedScene" uid="uid://buxmoyaxfidp6" path="res://PlayerUnitHeavy.tscn" id="10_txlrw"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ooby6"]
 vertices = PackedVector2Array(112, -176, 128, -176, 128, -128, 112, -128)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(112, -128, 128, -128, 128, -176, 112, -176)])
-
-[sub_resource type="Resource" id="Resource_2q8hs"]
-script = ExtResource("6_t5kfd")
-verb = 0
-icon = ExtResource("5_2d38s")
-parameters = ["res://PlayerUnitHeavy.tscn"]
 
 [sub_resource type="Gradient" id="Gradient_h47f3"]
 offsets = PackedFloat32Array(1)
@@ -35,6 +26,43 @@ width = 1
 [node name="Main" type="Node2D"]
 script = ExtResource("1_2lr5w")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer"]
+self_modulate = Color(0.486275, 0.105882, 0, 0.87451)
+layout_direction = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -470.0
+offset_bottom = -790.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 12
+script = ExtResource("8_jfaij")
+metadata/_edit_use_anchors_ = true
+
+[node name="GridContainer2" type="GridContainer" parent="CanvasLayer"]
+self_modulate = Color(0.486275, 0.105882, 0, 0.87451)
+layout_direction = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 10.0
+offset_right = -460.0
+offset_bottom = -790.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 8
+script = ExtResource("8_aieue")
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_bsrsb")
 format = 2
@@ -43,32 +71,27 @@ layer_0/tile_data = PackedInt32Array(-1, 0, 4, 65534, 393216, 3, 65533, 0, 4, 13
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="TileMap"]
 navigation_polygon = SubResource("NavigationPolygon_ooby6")
 
-[node name="YSort" type="Node2D" parent="TileMap"]
+[node name="YSort" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="EnemyUnit" parent="TileMap/YSort" instance=ExtResource("3_fgk1o")]
+[node name="EnemyUnit" parent="YSort" instance=ExtResource("3_fgk1o")]
 position = Vector2(38, 50)
-action_list = Array[ExtResource("6_t5kfd")]([null])
+action_list = Array[Resource("res://ActionVerb.gd")]([null])
 
-[node name="EnemyUnit2" parent="TileMap/YSort" instance=ExtResource("3_fgk1o")]
+[node name="EnemyUnit2" parent="YSort" instance=ExtResource("3_fgk1o")]
 position = Vector2(119, 104)
-action_list = Array[ExtResource("6_t5kfd")]([null])
+action_list = Array[Resource("res://ActionVerb.gd")]([null])
 
-[node name="EnemyUnit3" parent="TileMap/YSort" instance=ExtResource("3_fgk1o")]
+[node name="EnemyUnit3" parent="YSort" instance=ExtResource("3_fgk1o")]
 position = Vector2(153, 76)
-action_list = Array[ExtResource("6_t5kfd")]([null])
+action_list = Array[Resource("res://ActionVerb.gd")]([null])
 
-[node name="EnemyUnit4" parent="TileMap/YSort" instance=ExtResource("3_fgk1o")]
+[node name="EnemyUnit4" parent="YSort" instance=ExtResource("3_fgk1o")]
 position = Vector2(-191, 25)
-action_list = Array[ExtResource("6_t5kfd")]([null])
+action_list = Array[Resource("res://ActionVerb.gd")]([null])
 
-[node name="PlayerUnit" parent="TileMap/YSort" instance=ExtResource("10_txlrw")]
-position = Vector2(-32, -72)
-action_list = Array[ExtResource("6_t5kfd")]([SubResource("Resource_2q8hs")])
-
-[node name="PlayerUnit2" parent="TileMap/YSort" instance=ExtResource("2_ng5nf")]
-position = Vector2(72, -72)
-action_list = Array[ExtResource("6_t5kfd")]([SubResource("Resource_2q8hs")])
+[node name="PlayerUnit" parent="YSort" instance=ExtResource("2_ng5nf")]
+position = Vector2(-32, -80)
 
 [node name="SelectionGUI" type="TextureRect" parent="."]
 unique_name_in_owner = true
@@ -79,20 +102,12 @@ stretch_mode = 1
 script = ExtResource("5_7lm8c")
 metadata/_edit_use_anchors_ = true
 
-[node name="CameraMain" type="Camera2D" parent="."]
-z_index = 999
-position = Vector2(-2, -25)
-scale = Vector2(0.0052049, 4.46036)
-zoom = Vector2(2, 2)
-position_smoothing_enabled = true
-script = ExtResource("6_17dmj")
-
 [node name="VBoxContainer" type="VBoxContainer" parent="." node_paths=PackedStringArray("text0", "text1", "text2", "text3", "text4", "text5")]
 visible = false
 offset_left = -211.0
 offset_top = -237.0
 offset_right = -123.0
-offset_bottom = -108.0
+offset_bottom = -61.0
 script = ExtResource("6_jbgx7")
 text0 = NodePath("Label0")
 text1 = NodePath("Label1")
@@ -125,42 +140,15 @@ text = "test"
 layout_mode = 2
 text = "test"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer"]
-self_modulate = Color(0.486275, 0.105882, 0, 0.87451)
-layout_direction = 2
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = -470.0
-offset_bottom = -790.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-columns = 12
-script = ExtResource("8_jfaij")
-
-[node name="GridContainer2" type="GridContainer" parent="CanvasLayer"]
-self_modulate = Color(0.486275, 0.105882, 0, 0.87451)
-layout_direction = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 10.0
-offset_right = -460.0
-offset_bottom = -790.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-columns = 8
-script = ExtResource("8_aieue")
+[node name="CameraMain" type="Camera2D" parent="."]
+z_index = 999
+position = Vector2(-2, -25)
+scale = Vector2(0.0052049, 4.46036)
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+script = ExtResource("6_17dmj")
 
 [node name="TextureButton" type="TextureButton" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true

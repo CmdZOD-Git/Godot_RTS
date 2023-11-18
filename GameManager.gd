@@ -10,7 +10,7 @@ func _ready() -> void:
 	get_node("%SelectionGUI").unit_selected.connect(_unit_selected)
 	EventBus.unit_dead.connect(_unit_dead)
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			_try_select_unit()

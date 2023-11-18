@@ -23,7 +23,8 @@ func _update_selection(unit_selection):
 			add_item.size_flags_horizontal = 3
 			add_item.size_flags_vertical = 3
 			
-			add_item.button_down.connect(item.action_transform_self)
-#			add_item.button_down.connect(Callable(item, "action_transform_self"))
+			mouse_filter = Control.MOUSE_FILTER_STOP
+			
+			add_item.button_down.connect(Callable(item, action.function_called))
 
 			add_child(add_item)

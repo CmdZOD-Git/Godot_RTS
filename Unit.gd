@@ -109,7 +109,8 @@ func update_hp_bar() -> void:
 	hp_bar.set_value(ratio)
 
 func action_transform_self(target_unit_path:String = "res://PlayerUnitHeavy.tscn"):
-	var target_item = load(target_unit_path).instantiate()
+	var target_item: Unit = load(target_unit_path).instantiate()
+	var selected_unit = game_manager.selected_unit
 	target_item.transform = transform
 	target_item.health = health
 	target_item.target = target
@@ -117,4 +118,8 @@ func action_transform_self(target_unit_path:String = "res://PlayerUnitHeavy.tscn
 	target_item.last_attack_time = last_attack_time
 	target_item.team = team
 	add_sibling(target_item)
+	selected_unit.erase(self)
+	selected_unit.append(target_item)
+	game_manager.emit_signal("update_unit_selection", selected_unit)
+	
 	self.queue_free()
