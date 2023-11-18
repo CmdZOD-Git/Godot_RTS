@@ -8,7 +8,7 @@
 [node name="EnemyUnit" node_paths=PackedStringArray("selection_visual") instance=ExtResource("1_mxqo0")]
 script = ExtResource("2_wa8tq")
 selection_visual = NodePath("SelectionVisual")
-detect_range = 100.0
+detect_range = 50.0
 health_regen = 0.0
 team = 2
 

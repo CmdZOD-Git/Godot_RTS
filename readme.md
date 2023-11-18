@@ -19,4 +19,5 @@
 8. Basic UI for selected unit
 9. Transform Unit & Action selection
 10. Added Y-sort logic to Main
-11. Ranged unit
+11. Ranged attack and area attack
+12. Auto Attack

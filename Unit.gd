@@ -11,11 +11,17 @@ class_name Unit
 @export var attack_range:float = 20
 @export var attack_rate:float = 0.5
 
+
 @export_group("Ranged attack","ranged_attack")
 @export var ranged_attack:bool = false
-@export var ranged_attack_move_speed:float = 0.00
+@export var ranged_attack_move_speed:float = 0.0
 @export var ranged_attack_projectile:PackedScene = null
 @export var ranged_attack_hit_effect:PackedScene = null
+@export var ranged_attack_area_of_effect:float = 0.0
+
+var auto_attack_detection_area:Area2D
+var auto_attack_detection_shape:CollisionShape2D
+@export var seek_extra_range:float = 20
 
 var last_attack_time:float
 
@@ -36,7 +42,14 @@ var target:CharacterBody2D
 
 func _ready() -> void:
 	add_to_group("Unit")
-
+	auto_attack_detection_area = Area2D.new()
+	auto_attack_detection_area.set_collision_layer_value(1, false)
+	auto_attack_detection_shape = CollisionShape2D.new()
+	auto_attack_detection_shape.shape = CircleShape2D.new()
+	auto_attack_detection_shape.shape.radius = attack_range + seek_extra_range
+	auto_attack_detection_area.add_child(auto_attack_detection_shape)
+	add_child(auto_attack_detection_area)
+	
 	if is_player():
 		game_manager.player_units.append(self)
 	else:
@@ -77,8 +90,11 @@ func set_target(new_target):
 	target = new_target
 
 func _target_check() -> void:
+	if target == null and agent.is_navigation_finished():
+		_auto_attack_check()
+		
 	if target == null:
-		return
+			return
 		
 	var distance = global_position.distance_to(target.global_position)
 	
@@ -87,7 +103,19 @@ func _target_check() -> void:
 		_try_attack_target(target)
 	else:
 		agent.target_position = target.global_position
+
+func _auto_attack_check() -> void:
+	var potential_target = auto_attack_detection_area.get_overlapping_bodies()
+
+	if potential_target.size() == 0:
+		return
+
+	potential_target = potential_target.filter(func(a):return a.team != team)
+	potential_target = potential_target.filter(func(a):return a != self)
+	potential_target.sort_custom(func(a,b):return a.global_position.distance_squared_to(global_position) < b.global_position.distance_squared_to(global_position))
 	
+	if potential_target.size() > 0:
+		target = potential_target[0]
 
 func _try_attack_target(target):
 	var current_time = Time.get_unix_time_from_system()
@@ -101,6 +129,7 @@ func _try_attack_target(target):
 		projectile.damage = damage
 		projectile.target = target
 		projectile.hit_effect = ranged_attack_hit_effect
+		projectile.area_of_effect = ranged_attack_area_of_effect
 		add_sibling(projectile)
 	else:
 		target.add_child(attack_animation_effect.instantiate())

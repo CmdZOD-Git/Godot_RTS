@@ -17,6 +17,7 @@ health_max = 200.0
 health_regen = 20.0
 move_speed = 30.0
 attack_rate = 0.75
+seek_extra_range = 80.0
 
 [node name="SelectionVisual" type="Sprite2D" parent="." index="0"]
 visible = false

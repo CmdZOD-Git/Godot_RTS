@@ -81,8 +81,9 @@ func _input(event: InputEvent) -> void:
 6.b DONE added Y-sort logic to Main
 6.c DONE (but ugly AF) Fix unselect behaviour on action click in the UI
 7. DONE Ranged unit
-8. Ranged area attack
-9. Auto attack in range
+8. DONE Ranged area attack
+9. DONE Auto attack in range
+10. Fireball flare
 
 ## SPRINT 3
 1. Attack Move Command

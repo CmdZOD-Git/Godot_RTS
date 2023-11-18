@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://6eu4o6xjpty4"]
+[gd_scene load_steps=15 format=3 uid="uid://6eu4o6xjpty4"]
 
 [ext_resource type="Script" path="res://GameManager.gd" id="1_2lr5w"]
 [ext_resource type="TileSet" uid="uid://y2qu4p8eeq64" path="res://Sprites/TileMap.tres" id="2_bsrsb"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://VBoxContainer.gd" id="6_jbgx7"]
 [ext_resource type="PackedScene" uid="uid://dunyd51lro6j6" path="res://PlayerUnitRanged.tscn" id="7_u0xbq"]
 [ext_resource type="Script" path="res://GridContainerActions.gd" id="8_aieue"]
+[ext_resource type="PackedScene" uid="uid://buxmoyaxfidp6" path="res://PlayerUnitHeavy.tscn" id="8_ioixg"]
 [ext_resource type="Script" path="res://GridContainer.gd" id="8_jfaij"]
 [ext_resource type="Script" path="res://Spawner.gd" id="8_to2in"]
 
@@ -96,6 +97,11 @@ position = Vector2(48, -88)
 script = ExtResource("8_to2in")
 Spawn = ExtResource("7_u0xbq")
 
+[node name="Spawner2" type="Marker2D" parent="YSort"]
+position = Vector2(-56, -88)
+script = ExtResource("8_to2in")
+Spawn = ExtResource("8_ioixg")
+
 [node name="SelectionGUI" type="TextureRect" parent="."]
 unique_name_in_owner = true
 offset_right = 1.0
@@ -150,8 +156,3 @@ scale = Vector2(0.0052049, 4.46036)
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 script = ExtResource("6_17dmj")
-
-[node name="TextureButton" type="TextureButton" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-metadata/_edit_use_anchors_ = true
