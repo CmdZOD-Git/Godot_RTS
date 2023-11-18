@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://b63ims55bqb3i"]
+
+[ext_resource type="Texture2D" uid="uid://dntg2o150w7o8" path="res://Sprites/tilemap.png" id="1_tjndu"]
+[ext_resource type="Script" path="res://Projectile/Projectile.gd" id="2_0mbly"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_di22q"]
+atlas = ExtResource("1_tjndu")
+region = Rect2(123, 172, 8, 12)
+
+[sub_resource type="Animation" id="Animation_7vf6f"]
+resource_name = "idle"
+length = 0.5
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n554j"]
+_data = {
+"idle": SubResource("Animation_7vf6f")
+}
+
+[node name="Sprite2D" type="CharacterBody2D"]
+script = ExtResource("2_0mbly")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_di22q")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_n554j")
+}

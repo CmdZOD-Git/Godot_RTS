@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://dunyd51lro6j6"]
+
+[ext_resource type="PackedScene" uid="uid://xhs8qoymdufd" path="res://Unit.tscn" id="1_ug06q"]
+[ext_resource type="Script" path="res://PlayerUnit.gd" id="2_mduj0"]
+[ext_resource type="PackedScene" uid="uid://b63ims55bqb3i" path="res://Projectile/Fireball.tscn" id="3_mxs1i"]
+[ext_resource type="Texture2D" uid="uid://cecq07ii0unnq" path="res://Sprites/tile_0060.png" id="3_yblpr"]
+[ext_resource type="PackedScene" uid="uid://b7gwlnmaykhds" path="res://AttackAnimation.tscn" id="4_ftn7b"]
+[ext_resource type="Texture2D" uid="uid://bep6vycl3nio" path="res://Sprites/tile_0084.png" id="4_mqowc"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_duvvn"]
+load_path = "res://.godot/imported/tile_0060.png-b37de159527c735a4efab71ec24ff1f3.ctex"
+
+[node name="PlayerUnit" node_paths=PackedStringArray("selection_visual", "target_visual") instance=ExtResource("1_ug06q")]
+script = ExtResource("2_mduj0")
+selection_visual = NodePath("SelectionVisual")
+target_visual = NodePath("SelectionVisualTarget")
+health = 200.0
+health_max = 200.0
+health_regen = 20.0
+move_speed = 30.0
+attack_range = 300.0
+attack_rate = 0.75
+ranged_attack = true
+ranged_attack_move_speed = 100.0
+ranged_attack_projectile = ExtResource("3_mxs1i")
+ranged_attack_hit_effect = ExtResource("4_ftn7b")
+
+[node name="SelectionVisual" type="Sprite2D" parent="." index="0"]
+visible = false
+self_modulate = Color(0, 1, 0, 1)
+scale = Vector2(1.5, 0.782)
+texture = ExtResource("3_yblpr")
+
+[node name="SelectionVisualTarget" type="Sprite2D" parent="." index="1"]
+visible = false
+self_modulate = Color(1, 0, 0, 1)
+scale = Vector2(1.5, 0.782)
+texture = SubResource("CompressedTexture2D_duvvn")
+
+[node name="Sprite2D" parent="." index="4"]
+texture = ExtResource("4_mqowc")
+
+[node name="ProgressBar" parent="." index="5"]
+metadata/_edit_use_anchors_ = true

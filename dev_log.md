@@ -80,7 +80,7 @@ func _input(event: InputEvent) -> void:
 	+ DONE Add a bouton to switch a selected new type to old type
 6.b DONE added Y-sort logic to Main
 6.c DONE (but ugly AF) Fix unselect behaviour on action click in the UI
-7. Ranged unit
+7. DONE Ranged unit
 8. Ranged area attack
 9. Auto attack in range
 

@@ -1,14 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://6eu4o6xjpty4"]
+[gd_scene load_steps=14 format=3 uid="uid://6eu4o6xjpty4"]
 
 [ext_resource type="Script" path="res://GameManager.gd" id="1_2lr5w"]
 [ext_resource type="TileSet" uid="uid://y2qu4p8eeq64" path="res://Sprites/TileMap.tres" id="2_bsrsb"]
-[ext_resource type="PackedScene" uid="uid://svw5fydnkily" path="res://PlayerUnit.tscn" id="2_ng5nf"]
 [ext_resource type="PackedScene" uid="uid://dwbcvkqa6vw8h" path="res://EnemyUnit.tscn" id="3_fgk1o"]
 [ext_resource type="Script" path="res://SelectionGUI.gd" id="5_7lm8c"]
 [ext_resource type="Script" path="res://CameraMain.gd" id="6_17dmj"]
 [ext_resource type="Script" path="res://VBoxContainer.gd" id="6_jbgx7"]
+[ext_resource type="PackedScene" uid="uid://dunyd51lro6j6" path="res://PlayerUnitRanged.tscn" id="7_u0xbq"]
 [ext_resource type="Script" path="res://GridContainerActions.gd" id="8_aieue"]
 [ext_resource type="Script" path="res://GridContainer.gd" id="8_jfaij"]
+[ext_resource type="Script" path="res://Spawner.gd" id="8_to2in"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ooby6"]
 vertices = PackedVector2Array(112, -176, 128, -176, 128, -128, 112, -128)
@@ -90,8 +91,10 @@ action_list = Array[Resource("res://ActionVerb.gd")]([null])
 position = Vector2(-191, 25)
 action_list = Array[Resource("res://ActionVerb.gd")]([null])
 
-[node name="PlayerUnit" parent="YSort" instance=ExtResource("2_ng5nf")]
-position = Vector2(-32, -80)
+[node name="Spawner" type="Marker2D" parent="YSort"]
+position = Vector2(48, -88)
+script = ExtResource("8_to2in")
+Spawn = ExtResource("7_u0xbq")
 
 [node name="SelectionGUI" type="TextureRect" parent="."]
 unique_name_in_owner = true

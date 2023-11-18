@@ -11,6 +11,12 @@ class_name Unit
 @export var attack_range:float = 20
 @export var attack_rate:float = 0.5
 
+@export_group("Ranged attack","ranged_attack")
+@export var ranged_attack:bool = false
+@export var ranged_attack_move_speed:float = 0.00
+@export var ranged_attack_projectile:PackedScene = null
+@export var ranged_attack_hit_effect:PackedScene = null
+
 var last_attack_time:float
 
 var target:CharacterBody2D
@@ -88,8 +94,18 @@ func _try_attack_target(target):
 	if current_time - last_attack_time < attack_rate:
 		return
 
-	target.add_child(attack_animation_effect.instantiate())
-	target.take_damage(damage)	
+	if ranged_attack:
+		var projectile:Projectile = ranged_attack_projectile.instantiate()
+		projectile.transform = transform
+		projectile.move_speed = ranged_attack_move_speed
+		projectile.damage = damage
+		projectile.target = target
+		projectile.hit_effect = ranged_attack_hit_effect
+		add_sibling(projectile)
+	else:
+		target.add_child(attack_animation_effect.instantiate())
+		target.take_damage(damage)
+	
 	last_attack_time = current_time
 
 func take_damage (damage_to_take) -> void:
