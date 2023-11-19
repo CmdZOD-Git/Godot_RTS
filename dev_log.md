@@ -83,7 +83,9 @@ func _input(event: InputEvent) -> void:
 7. DONE Ranged unit
 8. DONE Ranged area attack
 9. DONE Auto attack in range
-10. Fireball flare
+10. DONE Fireball flare (PointLight2D be blessed)
+11. DONE Redo projectile logic to fail at last target position instead of disapearing
+12. DONE Cleanup error @ GameManager.gd:79
 
 ## SPRINT 3
 1. Attack Move Command

@@ -17,7 +17,6 @@ health_max = 200.0
 health_regen = 20.0
 move_speed = 30.0
 attack_rate = 0.75
-seek_extra_range = 80.0
 
 [node name="SelectionVisual" type="Sprite2D" parent="." index="0"]
 visible = false
@@ -30,6 +29,10 @@ visible = false
 self_modulate = Color(1, 0, 0, 1)
 scale = Vector2(1.5, 0.782)
 texture = SubResource("CompressedTexture2D_duvvn")
+
+[node name="NavigationLink2D" parent="." index="2"]
+radius = 5.0
+neighbor_distance = 50.0
 
 [node name="Sprite2D" parent="." index="4"]
 texture = ExtResource("4_32iw0")

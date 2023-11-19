@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://6eu4o6xjpty4"]
+[gd_scene load_steps=16 format=3 uid="uid://6eu4o6xjpty4"]
 
 [ext_resource type="Script" path="res://GameManager.gd" id="1_2lr5w"]
 [ext_resource type="TileSet" uid="uid://y2qu4p8eeq64" path="res://Sprites/TileMap.tres" id="2_bsrsb"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://buxmoyaxfidp6" path="res://PlayerUnitHeavy.tscn" id="8_ioixg"]
 [ext_resource type="Script" path="res://GridContainer.gd" id="8_jfaij"]
 [ext_resource type="Script" path="res://Spawner.gd" id="8_to2in"]
+[ext_resource type="PackedScene" uid="uid://svw5fydnkily" path="res://PlayerUnit.tscn" id="9_nfpr0"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ooby6"]
 vertices = PackedVector2Array(112, -176, 128, -176, 128, -128, 112, -128)
@@ -101,6 +102,11 @@ Spawn = ExtResource("7_u0xbq")
 position = Vector2(-56, -88)
 script = ExtResource("8_to2in")
 Spawn = ExtResource("8_ioixg")
+
+[node name="Spawner3" type="Marker2D" parent="YSort"]
+position = Vector2(0, -88)
+script = ExtResource("8_to2in")
+Spawn = ExtResource("9_nfpr0")
 
 [node name="SelectionGUI" type="TextureRect" parent="."]
 unique_name_in_owner = true

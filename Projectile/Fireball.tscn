@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b63ims55bqb3i"]
+[gd_scene load_steps=8 format=3 uid="uid://b63ims55bqb3i"]
 
 [ext_resource type="Texture2D" uid="uid://dntg2o150w7o8" path="res://Sprites/tilemap.png" id="1_tjndu"]
 [ext_resource type="Script" path="res://Projectile/Projectile.gd" id="2_0mbly"]
@@ -16,7 +16,18 @@ _data = {
 "idle": SubResource("Animation_7vf6f")
 }
 
+[sub_resource type="Gradient" id="Gradient_418cc"]
+offsets = PackedFloat32Array(0.530822, 0.695205)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1f4py"]
+gradient = SubResource("Gradient_418cc")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="Sprite2D" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("2_0mbly")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -26,3 +37,7 @@ texture = SubResource("AtlasTexture_di22q")
 libraries = {
 "": SubResource("AnimationLibrary_n554j")
 }
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0.101961, 0.101961, 1)
+texture = SubResource("GradientTexture2D_1f4py")
