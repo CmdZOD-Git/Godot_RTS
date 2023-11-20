@@ -72,5 +72,5 @@ func _unit_selected(unit_list:Array[Unit]):
 		item.toggle_selection_visual(true)
 
 func _unit_dead(unit_reference:Unit):
-	selected_unit = selected_unit.filter(func(a):a != unit_reference)
+	selected_unit = selected_unit.filter(func(a): return a != unit_reference)
 	emit_signal("update_unit_selection", selected_unit)

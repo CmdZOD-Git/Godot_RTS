@@ -74,7 +74,7 @@ func _input(event: InputEvent) -> void:
 3. DONE Health regen & associated particles
 4. DONE Hit impact
 5. DONE Basic UI for selected unit
-6. DONE Transform Unit & Action box to transform
+6.a DONE Transform Unit & Action box to transform
 	+ DONE Create a second type of player Unit
 	+ DONE Create a UI to switch one selected unit to the new type
 	+ DONE Add a bouton to switch a selected new type to old type
@@ -86,11 +86,23 @@ func _input(event: InputEvent) -> void:
 10. DONE Fireball flare (PointLight2D be blessed)
 11. DONE Redo projectile logic to fail at last target position instead of disapearing
 12. DONE Cleanup error @ GameManager.gd:79
+13. DONE (forgot a return on callable) Deal with strange unselect bug on target death
 
 ## SPRINT 3
 1. Attack Move Command
+	+ Read key modifier (ex: CTRL)
+	+ Display mouse modifier in UI (mouse or otherwise)
+	+ create a new vector (attack move ground target)
+	+ allow for target check on the move toward attack move target ground
 2. XP System
-3. UI for Ressources & Time
+	+ store xp per unit kill value
+	+ Add stars above unit head to reflect level
+	+ give extra stats per level
+3.a UI for Ressources & Time
+	+ Count time
+	+ Gain gold per kill
+3.b Allow resource collection
+	+ Gain wood and stone frome map
 4. Barracks
 5. Mission logic
 6. Mission select screen
