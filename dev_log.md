@@ -87,6 +87,7 @@ func _input(event: InputEvent) -> void:
 11. DONE Redo projectile logic to fail at last target position instead of disapearing
 12. DONE Cleanup error @ GameManager.gd:79
 13. DONE (forgot a return on callable) Deal with strange unselect bug on target death
+14. DONE minor change to UI anchor logic
 
 ## SPRINT 3
 1. Attack Move Command
