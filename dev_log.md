@@ -90,11 +90,15 @@ func _input(event: InputEvent) -> void:
 14. DONE minor change to UI anchor logic
 
 ## SPRINT 3
-1. Attack Move Command
-	+ Read key modifier (ex: CTRL)
-	+ Display mouse modifier in UI (mouse or otherwise)
-	+ create a new vector (attack move ground target)
-	+ allow for target check on the move toward attack move target ground
+1.a DONE Attack Move Command
+	+ DONE Read key modifier (ex: CTRL)
+	+ DONE Display mouse modifier in UI (mouse or otherwise)
+	+ DONE create a new vector (attack move ground target)
+	+ DONE allow for target check on the move toward attack move target ground
+	=> If i had the time, i'll break the whole logic and separate more cleanly unit, command and logic
+
+1.b Apply a naive anti-stuck logic to stop movement if blocked
+ 
 2. XP System
 	+ store xp per unit kill value
 	+ Add stars above unit head to reflect level

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://6eu4o6xjpty4"]
+[gd_scene load_steps=20 format=3 uid="uid://6eu4o6xjpty4"]
 
 [ext_resource type="Script" path="res://GameManager.gd" id="1_2lr5w"]
 [ext_resource type="TileSet" uid="uid://y2qu4p8eeq64" path="res://Sprites/TileMap.tres" id="2_bsrsb"]
@@ -12,6 +12,8 @@
 [ext_resource type="Script" path="res://GridContainer.gd" id="8_jfaij"]
 [ext_resource type="Script" path="res://Spawner.gd" id="8_to2in"]
 [ext_resource type="PackedScene" uid="uid://svw5fydnkily" path="res://PlayerUnit.tscn" id="9_nfpr0"]
+[ext_resource type="Script" path="res://MouseManager.gd" id="13_br3mw"]
+[ext_resource type="Texture2D" uid="uid://cecq07ii0unnq" path="res://Sprites/tile_0060.png" id="14_i7j1t"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ooby6"]
 vertices = PackedVector2Array(112, -176, 128, -176, 128, -128, 112, -128)
@@ -25,6 +27,28 @@ colors = PackedColorArray(0.423529, 0.309804, 0.12549, 0.788235)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_w0lfj"]
 gradient = SubResource("Gradient_h47f3")
 width = 1
+
+[sub_resource type="Animation" id="Animation_csana"]
+resource_name = "default"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.0002, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, -2),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sjg82"]
+_data = {
+"default": SubResource("Animation_csana")
+}
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_2lr5w")
@@ -133,7 +157,7 @@ stretch_mode = 1
 script = ExtResource("5_7lm8c")
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." node_paths=PackedStringArray("text0", "text1", "text2", "text3", "text4", "text5")]
+[node name="Debug panel" type="VBoxContainer" parent="." node_paths=PackedStringArray("text0", "text1", "text2", "text3", "text4", "text5")]
 visible = false
 offset_left = -211.0
 offset_top = -237.0
@@ -147,27 +171,27 @@ text3 = NodePath("Label3")
 text4 = NodePath("Label4")
 text5 = NodePath("Label5")
 
-[node name="Label0" type="Label" parent="VBoxContainer"]
+[node name="Label0" type="Label" parent="Debug panel"]
 layout_mode = 2
 text = "test"
 
-[node name="Label1" type="Label" parent="VBoxContainer"]
+[node name="Label1" type="Label" parent="Debug panel"]
 layout_mode = 2
 text = "test"
 
-[node name="Label2" type="Label" parent="VBoxContainer"]
+[node name="Label2" type="Label" parent="Debug panel"]
 layout_mode = 2
 text = "test"
 
-[node name="Label3" type="Label" parent="VBoxContainer"]
+[node name="Label3" type="Label" parent="Debug panel"]
 layout_mode = 2
 text = "test"
 
-[node name="Label4" type="Label" parent="VBoxContainer"]
+[node name="Label4" type="Label" parent="Debug panel"]
 layout_mode = 2
 text = "test"
 
-[node name="Label5" type="Label" parent="VBoxContainer"]
+[node name="Label5" type="Label" parent="Debug panel"]
 layout_mode = 2
 text = "test"
 
@@ -178,3 +202,18 @@ scale = Vector2(0.0052049, 4.46036)
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 script = ExtResource("6_17dmj")
+
+[node name="MouseManager" type="Control" parent="." node_paths=PackedStringArray("target_sprite")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("13_br3mw")
+target_sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="MouseManager"]
+texture = ExtResource("14_i7j1t")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MouseManager/Sprite2D"]
+autoplay = "default"
+libraries = {
+"": SubResource("AnimationLibrary_sjg82")
+}

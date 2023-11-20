@@ -10,3 +10,5 @@ extends VBoxContainer
 func _physics_process(delta: float) -> void:
 	text0.text = str(get_local_mouse_position())
 	text1.text = str(get_global_mouse_position())
+	text2.text = str(get_node("/root/Main/MouseManager").attack_move_command)
+	

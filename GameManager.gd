@@ -4,10 +4,14 @@ var selected_unit: Array[PlayerUnit]
 var player_units: Array[Unit]
 var enemy_units: Array[Unit]
 
+var attack_move_toggle:bool
+var attack_move_target:Vector2
+
 signal update_unit_selection(selected_unit)
 
 func _ready() -> void:
 	get_node("%SelectionGUI").unit_selected.connect(_unit_selected)
+	EventBus.attack_move.connect(_attack_move)
 	EventBus.unit_dead.connect(_unit_dead)
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -22,6 +26,10 @@ func _get_selected_unit():
 	var query = PhysicsPointQueryParameters2D.new()
 	query.position = get_global_mouse_position()
 	var intersection: Array[Dictionary] = space.intersect_point(query, 1)
+	
+	if attack_move_toggle == true:
+		attack_move_target = get_global_mouse_position()
+		return
 	
 	if intersection.is_empty():
 		return null
@@ -57,8 +65,16 @@ func _try_command_unit():
 		return
 		
 	var target = _get_selected_unit()
+	
+	if attack_move_target != Vector2.ZERO:
+		for item in selected_unit:
+			item.move_to_location(get_global_mouse_position())
+			item.state = item.State.attack_move
+			item.attack_move_target = attack_move_target
+			attack_move_target = Vector2.ZERO
+		return
 
-	if not target == null and target.is_player() == false:
+	if target != null and target.is_player() != true:
 		for item in selected_unit:
 			item.set_target(target)
 	else:
@@ -74,3 +90,6 @@ func _unit_selected(unit_list:Array[Unit]):
 func _unit_dead(unit_reference:Unit):
 	selected_unit = selected_unit.filter(func(a): return a != unit_reference)
 	emit_signal("update_unit_selection", selected_unit)
+
+func _attack_move(status:bool):
+	attack_move_toggle = status

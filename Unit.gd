@@ -2,6 +2,13 @@ extends CharacterBody2D
 
 class_name Unit
 
+enum State{
+	default,
+	attack_move,
+}
+
+var state:State = State.default
+
 @export var health:float = 100.0
 @export var health_max:float = 100.0
 @export var health_regen:float = 1.0
@@ -26,6 +33,7 @@ var auto_attack_detection_shape:CollisionShape2D
 var last_attack_time:float
 
 var target:CharacterBody2D
+var attack_move_target:Vector2 = Vector2.ZERO
 
 @export var agent: NavigationAgent2D
 @export var sprite: Sprite2D
@@ -58,6 +66,13 @@ func _ready() -> void:
 	update_hp_bar()
 
 func _physics_process(delta: float) -> void:
+	check_regen(delta)
+	moving(delta)
+
+func _process(delta: float) -> void:
+	_target_check()
+
+func check_regen(delta:float)-> void:
 	if health < health_max:
 		health += health_regen * delta
 		health = clampf(health, 0, health_max)
@@ -65,16 +80,15 @@ func _physics_process(delta: float) -> void:
 		update_hp_bar()
 	else:
 		particle_health.emitting = false
-	
+
+func moving(delta:float)-> void:
 	if agent.is_navigation_finished():
+		state = State.default
 		return
-	
+		
 	var direction = global_position.direction_to(agent.get_next_path_position())
 	velocity = direction * move_speed
 	move_and_slide()
-
-func _process(delta: float) -> void:
-	_target_check()
 
 func is_player() -> bool:
 	if team == 1:
@@ -92,9 +106,14 @@ func set_target(new_target):
 func _target_check() -> void:
 	if target == null and agent.is_navigation_finished():
 		_auto_attack_check()
+	
+	if target == null and attack_move_target != Vector2.ZERO:
+		_auto_attack_check()
+		if target == null:
+			agent.target_position = attack_move_target
 		
 	if target == null:
-			return
+		return
 		
 	var distance = global_position.distance_to(target.global_position)
 	
