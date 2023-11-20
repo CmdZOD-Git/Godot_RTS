@@ -103,25 +103,35 @@ func move_to_location (location):
 func set_target(new_target):
 	target = new_target
 
+func _get_target_position():
+		if target == null and attack_move_target != Vector2.ZERO:
+			return attack_move_target
+		elif target == null and attack_move_target == Vector2.ZERO:
+			return agent.target_position
+		else:
+			return target.global_position
+
 func _target_check() -> void:
 	if target == null and agent.is_navigation_finished():
+		state = State.default
+		attack_move_target = Vector2.ZERO
 		_auto_attack_check()
 	
-	if target == null and attack_move_target != Vector2.ZERO:
+	if target == null and attack_move_target != Vector2.ZERO and state == State.attack_move:
 		_auto_attack_check()
-		if target == null:
+		if target == null and global_position.distance_squared_to(attack_move_target) > 4:
 			agent.target_position = attack_move_target
 		
-	if target == null:
+	if target == null and agent.target_position == Vector2.ZERO:
 		return
 		
-	var distance = global_position.distance_to(target.global_position)
+	var distance = global_position.distance_to(_get_target_position())
 	
-	if distance <= attack_range:
+	if distance <= attack_range and target != null:
 		agent.target_position = global_position
 		_try_attack_target(target)
 	else:
-		agent.target_position = target.global_position
+		agent.target_position = _get_target_position()
 
 func _auto_attack_check() -> void:
 	var potential_target = auto_attack_detection_area.get_overlapping_bodies()

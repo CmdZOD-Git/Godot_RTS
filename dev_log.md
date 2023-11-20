@@ -97,8 +97,13 @@ func _input(event: InputEvent) -> void:
 	+ DONE allow for target check on the move toward attack move target ground
 	=> If i had the time, i'll break the whole logic and separate more cleanly unit, command and logic
 
-1.b Apply a naive anti-stuck logic to stop movement if blocked
- 
+1.b WARNING : Hair-pulling ahead, fix the auto-attack, move and attack logic => I'm gonna have to rewrite it all
+
+1.c Apply a naive anti-stuck logic to stop movement if blocked
+	+ check if move target exist and no move for the last 1 sec
+	+ if so, stop movement for 1 sec
+	+ check if road is free every 1 sec
+	 
 2. XP System
 	+ store xp per unit kill value
 	+ Add stars above unit head to reflect level

@@ -30,7 +30,7 @@ particle_health = NodePath("HealthParticle")
 attack_animation_effect = ExtResource("4_4svg7")
 
 [node name="NavigationLink2D" type="NavigationAgent2D" parent="."]
-path_desired_distance = 10.0
+path_desired_distance = 3.0
 target_desired_distance = 3.0
 path_postprocessing = 1
 radius = 20.0
